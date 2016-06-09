@@ -1,0 +1,54 @@
+PUT /meetups2/
+{
+  "mappings": {
+    "meetup": {
+      "properties": {
+        "venue": {
+          "properties": {
+            "lat": {
+              "type": "float"
+            },
+            "lon": {
+              "type": "float"
+            },
+            "lonlat": {
+              "type": "geo_point"
+            },
+            "venue_id": {
+              "type": "long"
+            },
+            "venue_name": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            }        
+          }
+        }
+      }
+    }
+  }
+}
+
+POST _reindex
+{
+  "source": {
+    "index": "meetups"
+  },
+  "dest": {
+    "index": "meetups2"
+  }
+}
+
+DELETE  /meetups/
+
+POST /_aliases
+{
+ "actions" : [
+   { "add" : { "index" : "meetups2", "alias" : "meetups" } }
+  ]
+}
+
