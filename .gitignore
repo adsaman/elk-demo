@@ -2,3 +2,4 @@ license
 .directory
 .vagrant
 *.box
+*.deb
