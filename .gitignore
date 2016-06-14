@@ -3,5 +3,6 @@ license
 .vagrant
 *.box
 *.deb
-logs/
+*.log
+*.lst
 logs.tgz
