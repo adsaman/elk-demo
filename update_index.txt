@@ -52,3 +52,20 @@ POST /_aliases
   ]
 }
 
+PUT /apache-logs/
+{
+  "mappings": {
+    "access": {
+      "properties": {
+        "geoip": {
+          "properties": {
+            "location": {
+              "type": "geo_point"
+            }
+	  }
+	}
+      }
+    }
+  }
+}
+
